@@ -1,1 +1,0 @@
-async function e(e){let{data:t,error:n}=await e.auth.getUser();if(n||!t.user)throw Error(`로그인이 필요합니다.`);return t.user}async function t(e){let{data:t}=await e.auth.getSession();return t.session?.access_token??null}export{t as n,e as t};

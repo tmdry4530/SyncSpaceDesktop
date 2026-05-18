@@ -1,1 +1,0 @@
-function e(e,t=`사용자`){let n=e?.trim();if(!n)return t;let r=n.match(/^([^@\s]+)@/)?.[1]??n,i=r.match(/(?:^|[._-])u(\d+)(?:[._-]|$)/i);return i?.[1]?`User ${i[1]}`:r.length<=18?r:`${r.slice(0,15)}…`}export{e as t};
