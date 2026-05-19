@@ -58,8 +58,8 @@
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Background" Value="#CFCFCF" />
-                    <Setter Property="Foreground" Value="#F8FAFC" />
-                    <Setter Property="BorderBrush" Value="#CFCFCF" />
+                    <Setter Property="Foreground" Value="#374151" />
+                    <Setter Property="BorderBrush" Value="#B8B8B8" />
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#F1F5F9" />
