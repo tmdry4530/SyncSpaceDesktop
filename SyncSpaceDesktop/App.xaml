@@ -3,16 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="Bg" Color="#0F172A" />
-        <SolidColorBrush x:Key="Panel" Color="#111827" />
-        <SolidColorBrush x:Key="Panel2" Color="#1F2937" />
-        <SolidColorBrush x:Key="Text" Color="#E5E7EB" />
-        <SolidColorBrush x:Key="Muted" Color="#94A3B8" />
-        <SolidColorBrush x:Key="Accent" Color="#38BDF8" />
-        <Style TargetType="TextBlock"><Setter Property="Foreground" Value="{StaticResource Text}" /></Style>
-        <Style TargetType="TextBox"><Setter Property="Margin" Value="0,4"/><Setter Property="Padding" Value="8"/></Style>
-        <Style TargetType="PasswordBox"><Setter Property="Margin" Value="0,4"/><Setter Property="Padding" Value="8"/></Style>
-        <Style TargetType="Button"><Setter Property="Margin" Value="4"/><Setter Property="Padding" Value="10,6"/></Style>
-        <Style TargetType="ListBox"><Setter Property="Background" Value="{StaticResource Panel}"/><Setter Property="Foreground" Value="{StaticResource Text}"/><Setter Property="BorderBrush" Value="#334155"/></Style>
+        <!-- SyncSpace dark native theme: close to the reference screenshot -->
+        <Color x:Key="BgColor">#050816</Color>
+        <Color x:Key="HeaderColor">#050816</Color>
+        <Color x:Key="PanelColor">#111827</Color>
+        <Color x:Key="Panel2Color">#0B1220</Color>
+        <Color x:Key="EditorColor">#030716</Color>
+        <Color x:Key="BorderColor">#334155</Color>
+        <Color x:Key="SelectionColor">#3A3F4B</Color>
+        <Color x:Key="TextColor">#F8FAFC</Color>
+        <Color x:Key="MutedColor">#94A3B8</Color>
+        <Color x:Key="AccentColor">#22C55E</Color>
+
+        <SolidColorBrush x:Key="Bg" Color="{StaticResource BgColor}" />
+        <SolidColorBrush x:Key="Header" Color="{StaticResource HeaderColor}" />
+        <SolidColorBrush x:Key="Panel" Color="{StaticResource PanelColor}" />
+        <SolidColorBrush x:Key="Panel2" Color="{StaticResource Panel2Color}" />
+        <SolidColorBrush x:Key="Editor" Color="{StaticResource EditorColor}" />
+        <SolidColorBrush x:Key="Border" Color="{StaticResource BorderColor}" />
+        <SolidColorBrush x:Key="Selection" Color="{StaticResource SelectionColor}" />
+        <SolidColorBrush x:Key="Text" Color="{StaticResource TextColor}" />
+        <SolidColorBrush x:Key="Muted" Color="{StaticResource MutedColor}" />
+        <SolidColorBrush x:Key="Accent" Color="{StaticResource AccentColor}" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Text}" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0,4" />
+            <Setter Property="Padding" Value="6,4" />
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="Foreground" Value="#111827" />
+            <Setter Property="BorderBrush" Value="#CBD5E1" />
+            <Setter Property="CaretBrush" Value="#111827" />
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="0,4" />
+            <Setter Property="Padding" Value="6,4" />
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="Foreground" Value="#111827" />
+            <Setter Property="BorderBrush" Value="#CBD5E1" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="Padding" Value="10,6" />
+            <Setter Property="Background" Value="#D8D8D8" />
+            <Setter Property="Foreground" Value="#111827" />
+            <Setter Property="BorderBrush" Value="#C7C7C7" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#CFCFCF" />
+                    <Setter Property="Foreground" Value="#F8FAFC" />
+                    <Setter Property="BorderBrush" Value="#CFCFCF" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F1F5F9" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="{StaticResource Panel}" />
+            <Setter Property="Foreground" Value="{StaticResource Text}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource Text}" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Selection}" />
+                    <Setter Property="Foreground" Value="{StaticResource Text}" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1E293B" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="RichTextBox">
+            <Setter Property="Background" Value="{StaticResource Editor}" />
+            <Setter Property="Foreground" Value="{StaticResource Text}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+            <Setter Property="CaretBrush" Value="{StaticResource Text}" />
+            <Setter Property="SelectionBrush" Value="#2563EB" />
+        </Style>
     </Application.Resources>
 </Application>

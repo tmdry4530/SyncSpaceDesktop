@@ -8,10 +8,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="26" />
         </Grid.RowDefinitions>
-        <DockPanel Grid.Row="0" Background="#020617">
-            <TextBlock Text="SyncSpace Native" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" Margin="16,0" />
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0,0,10,0">
-                <TextBlock x:Name="PresenceText" Text="offline" Foreground="{StaticResource Muted}" VerticalAlignment="Center" Margin="0,0,10,0" />
+        <DockPanel Grid.Row="0" Background="{StaticResource Header}">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="4,0,0,0">
+                <TextBlock Text="SyncSpace Native" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,18,0" />
+                <TextBlock x:Name="PresenceText" Text="offline" Foreground="{StaticResource Muted}" VerticalAlignment="Center" Margin="0,0,14,0" />
                 <Button Content="새로고침" Click="Refresh_Click" />
                 <Button Content="설정" Click="Settings_Click" />
             </StackPanel>
@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="360" />
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="0" Background="{StaticResource Panel}" Padding="10" BorderBrush="#334155" BorderThickness="0,0,1,0">
+            <Border Grid.Column="0" Background="{StaticResource Panel}" Padding="4,10,10,10" BorderBrush="{StaticResource Border}" BorderThickness="0,0,1,0">
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Bottom">
                         <TextBox x:Name="NewWorkspaceBox" ToolTip="워크스페이스 이름" />
@@ -55,7 +55,7 @@
                 </DockPanel>
             </Border>
 
-            <Border Grid.Column="1" Background="#0B1220" Padding="10" BorderBrush="#334155" BorderThickness="0,0,1,0">
+            <Border Grid.Column="1" Background="{StaticResource Panel}" Padding="10" BorderBrush="{StaticResource Border}" BorderThickness="0,0,1,0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -87,7 +87,7 @@
                         <TextBlock x:Name="DocumentTitle" Text="문서 선택" FontSize="22" FontWeight="Bold" />
                         <TextBlock x:Name="DocMetaText" DockPanel.Dock="Right" Foreground="{StaticResource Muted}" VerticalAlignment="Center" />
                     </DockPanel>
-                    <RichTextBox x:Name="EditorBox" Grid.Row="1" Background="#020617" Foreground="{StaticResource Text}" BorderBrush="#334155" FontSize="15" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextChanged="EditorBox_TextChanged" />
+                    <RichTextBox x:Name="EditorBox" Grid.Row="1" Background="{StaticResource Editor}" Foreground="{StaticResource Text}" BorderBrush="{StaticResource Border}" FontSize="15" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextChanged="EditorBox_TextChanged" />
                     <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,0">
                         <Button Content="H1" Click="InsertH1_Click" />
                         <Button Content="체크리스트" Click="InsertTodo_Click" />
@@ -99,7 +99,7 @@
                 </Grid>
             </Border>
 
-            <Border Grid.Column="3" Background="{StaticResource Panel}" Padding="10" BorderBrush="#334155" BorderThickness="1,0,0,0">
+            <Border Grid.Column="3" Background="{StaticResource Panel}" Padding="10" BorderBrush="{StaticResource Border}" BorderThickness="1,0,0,0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -122,6 +122,6 @@
             </Border>
         </Grid>
 
-        <TextBlock Grid.Row="2" x:Name="StatusText" Text="ready" Foreground="{StaticResource Muted}" Background="#020617" Padding="8,4" />
+        <TextBlock Grid.Row="2" x:Name="StatusText" Text="ready" Foreground="{StaticResource Muted}" Background="{StaticResource Header}" Padding="8,4" />
     </Grid>
 </Window>

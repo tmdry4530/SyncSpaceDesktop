@@ -4,7 +4,7 @@ C# / WPF native desktop client for [SyncSpace](https://github.com/tmdry4530/Sync
 
 ## What changed from v0.1.0
 
-v0.1.0 was a WebView2 wrapper. v0.2.0 removes WebView2 and renders the main app screens with native WPF controls.
+v0.1.0 was a WebView2 wrapper. v0.2.0 removes WebView2 and renders the main app screens with native WPF controls. v0.2.1 refreshes the native dark theme to match the reference screenshot: near-black app canvas, slate panels, gray selections/buttons, bright text, and green realtime status.
 
 Native screens/features:
 
