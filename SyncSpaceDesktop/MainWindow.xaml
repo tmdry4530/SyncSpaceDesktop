@@ -1,0 +1,127 @@
+<Window x:Class="SyncSpaceDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SyncSpace Native" Width="1440" Height="920" MinWidth="1100" MinHeight="720" WindowStartupLocation="CenterScreen" Background="{StaticResource Bg}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="26" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{StaticResource Header}">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="4,0,0,0">
+                <TextBlock Text="SyncSpace Native" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,18,0" />
+                <TextBlock x:Name="PresenceText" Text="offline" Foreground="{StaticResource Muted}" VerticalAlignment="Center" Margin="0,0,14,0" />
+                <Button Content="새로고침" Click="Refresh_Click" />
+                <Button Content="설정" Click="Settings_Click" />
+            </StackPanel>
+        </DockPanel>
+
+        <Grid Grid.Row="1" x:Name="LoginPanel" Background="{StaticResource Bg}">
+            <Border Background="{StaticResource Panel}" Width="460" Padding="28" CornerRadius="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="로그인" FontSize="26" FontWeight="Bold" />
+                    <TextBlock Text="Supabase URL/Anon Key는 설정에서 입력" Foreground="{StaticResource Muted}" Margin="0,4,0,16" />
+                    <TextBlock Text="Email" />
+                    <TextBox x:Name="EmailBox" />
+                    <TextBlock Text="Password" Margin="0,8,0,0" />
+                    <PasswordBox x:Name="PasswordBox" />
+                    <Button Content="로그인" HorizontalAlignment="Stretch" Margin="0,16,0,0" Click="Login_Click" />
+                    <TextBlock x:Name="LoginError" Foreground="#FCA5A5" TextWrapping="Wrap" Margin="0,10,0,0" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1" x:Name="AppPanel" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="360" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{StaticResource Panel}" Padding="4,10,10,10" BorderBrush="{StaticResource Border}" BorderThickness="0,0,1,0">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Bottom">
+                        <TextBox x:Name="NewWorkspaceBox" ToolTip="워크스페이스 이름" />
+                        <Button Content="워크스페이스 생성" Click="CreateWorkspace_Click" />
+                        <TextBox x:Name="InviteCodeBox" ToolTip="초대 코드" />
+                        <Button Content="초대코드 참가" Click="JoinWorkspace_Click" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Workspaces" FontWeight="Bold" Margin="4" />
+                        <ListBox x:Name="WorkspaceList" SelectionChanged="WorkspaceList_SelectionChanged" DisplayMemberPath="Name" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="1" Background="{StaticResource Panel}" Padding="10" BorderBrush="{StaticResource Border}" BorderThickness="0,0,1,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="Channels" FontWeight="Bold" Margin="4" />
+                        <ListBox x:Name="ChannelList" SelectionChanged="ChannelList_SelectionChanged" DisplayMemberPath="Name" Height="260" />
+                        <TextBox x:Name="NewChannelBox" ToolTip="채널 이름" />
+                        <Button Content="채널 생성" Click="CreateChannel_Click" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="Documents" FontWeight="Bold" Margin="4" />
+                        <ListBox x:Name="DocumentList" SelectionChanged="DocumentList_SelectionChanged" DisplayMemberPath="Title" Height="260" />
+                        <TextBox x:Name="NewDocumentBox" ToolTip="문서 제목" />
+                        <Button Content="문서 생성" Click="CreateDocument_Click" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2" Background="{StaticResource Bg}" Padding="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Margin="0,0,0,8">
+                        <TextBlock x:Name="DocumentTitle" Text="문서 선택" FontSize="22" FontWeight="Bold" />
+                        <TextBlock x:Name="DocMetaText" DockPanel.Dock="Right" Foreground="{StaticResource Muted}" VerticalAlignment="Center" />
+                    </DockPanel>
+                    <RichTextBox x:Name="EditorBox" Grid.Row="1" Background="{StaticResource Editor}" Foreground="{StaticResource Text}" BorderBrush="{StaticResource Border}" FontSize="15" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextChanged="EditorBox_TextChanged" />
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,0">
+                        <Button Content="H1" Click="InsertH1_Click" />
+                        <Button Content="체크리스트" Click="InsertTodo_Click" />
+                        <Button Content="인용" Click="InsertQuote_Click" />
+                        <Button Content="코드" Click="InsertCode_Click" />
+                        <Button Content="저장" Click="SaveDocument_Click" />
+                        <TextBlock x:Name="EditorStatus" Foreground="{StaticResource Muted}" VerticalAlignment="Center" Margin="8,0" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="3" Background="{StaticResource Panel}" Padding="10" BorderBrush="{StaticResource Border}" BorderThickness="1,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="ChannelTitle" Text="채팅" FontSize="18" FontWeight="Bold" />
+                    <ListBox x:Name="MessageList" Grid.Row="1" Margin="0,8" />
+                    <DockPanel Grid.Row="2">
+                        <Button Content="전송" DockPanel.Dock="Right" Click="SendMessage_Click" />
+                        <TextBox x:Name="MessageBox" MinHeight="38" KeyDown="MessageBox_KeyDown" />
+                    </DockPanel>
+                    <StackPanel Grid.Row="3" Margin="0,12,0,0">
+                        <TextBlock Text="Knowledge Rail" FontWeight="Bold" />
+                        <TextBlock Text="문서의 [[링크]] / #태그 / 제목을 네이티브로 분석" Foreground="{StaticResource Muted}" TextWrapping="Wrap" />
+                        <ListBox x:Name="InsightList" Margin="0,8,0,0" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <TextBlock Grid.Row="2" x:Name="StatusText" Text="ready" Foreground="{StaticResource Muted}" Background="{StaticResource Header}" Padding="8,4" />
+    </Grid>
+</Window>
